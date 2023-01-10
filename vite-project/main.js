@@ -1,7 +1,6 @@
 import "./style.css";
 import javascriptLogo from "./javascript.svg";
-import { setupCounter } from "./counter.js";
-const URL = "https://api.quotable.io/random";
+import { setupCounter } from "./counter.js";const URL = "https://api.quotable.io/random";
 let pokemon = "gengar";
 const pokemons = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
 async function getData(URL) {
