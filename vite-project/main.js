@@ -1,8 +1,5 @@
-import "./style.css";
-import { setupCounter } from "./counter.js";
+const URL = "https://api.weather.gov/points/39.7456,-97.0892";
 
-const URL =
-  "https://api.tomorrow.io/v4/locations?apikey=Y36J5oGiQiMrMwr0SnNAq4Zhqn038m6V";
 async function getData(URL) {
   try {
     const response = await fetch(URL);
@@ -11,7 +8,7 @@ async function getData(URL) {
       throw error(response);
     } else {
       const data = await response.json();
-      document.getElementById("api-response").textContent = data.name;
+
       console.log(data);
     }
   } catch (error) {
