@@ -1,0 +1,35 @@
+import "../styles/style.css";
+import "./dom";
+import { DOMSelectors } from "./dom";
+const URL = "https://goweather.herokuapp.com/weather/los&angeles";
+// "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=c2ab0165ad940a6b261260e934520251";
+
+async function getData(URL) {
+  try {
+    const response = await fetch(URL);
+    if (response.status < 200 || response.status > 299) {
+      console.log(response.status);
+      throw error(response);
+    } else {
+      const data = await response.json();
+      document.getElementById("api-response").textContent = data.temperature;
+
+      console.log(data);
+    }
+  } catch (error) {
+    console.log(error);
+    console.log("sad");
+    document.getElementById("api-response").textContent = "sorry";
+  }
+}
+
+getData(URL);
+
+function clear() {
+  DOMSelectors.input1.value = "";
+}
+
+DOMSelectors.submit.addEventListener("submit", function (e) {
+  e.preventDefault();
+  clear();
+});
