@@ -1,7 +1,8 @@
 import "../styles/style.css";
 import "./dom";
 import { DOMSelectors } from "./dom";
-const URL = "https://goweather.herokuapp.com/weather/los&angeles";
+const URL =
+  "https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&hourly=temperature_2m&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York";
 // "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=c2ab0165ad940a6b261260e934520251";
 
 async function getData(URL) {
@@ -12,7 +13,8 @@ async function getData(URL) {
       throw error(response);
     } else {
       const data = await response.json();
-      document.getElementById("api-response").textContent = data.temperature;
+      document.getElementById("api-response").textContent =
+        data.current_weather.temperature;
 
       console.log(data);
     }
