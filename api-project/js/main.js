@@ -4,6 +4,7 @@ import { DOMSelectors } from "./dom";
 const URL =
   "https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&hourly=temperature_2m&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York";
 // "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=c2ab0165ad940a6b261260e934520251";;
+
 async function getData(URL) {
   try {
     const response = await fetch(URL);
@@ -26,40 +27,54 @@ async function getData(URL) {
 
 getData(URL);
 
+const url1 =
+  "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
+  DOMSelectors.input1.value;
+let x = await fetch(url1);
+
+let data = await x.json();
+
+async function findAddress() {
+  return data;
+}
+
+async function init() {
+  let monkeys = await findAddress();
+  console.log(monkeys);
+}
+function show() {
+  results.innerHTML = " ";
+  if (data.length > 0) {
+    data.forEach((element) => {
+      results.innerHTML +=
+        "<div class='results'>" +
+        element.display_name +
+        "<br> Lat: " +
+        element.lat +
+        " Lng: " +
+        element.lon +
+        "</div>";
+    });
+  } else {
+    results.innerHTML = "<p style='color: red;'>Not found</p>";
+  }
+}
+
+function find() {
+  fetch(url1)
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
+}
+
 function clear() {
   DOMSelectors.input1.value = "";
+  results.innerHTML = "";
 }
 
 DOMSelectors.submit.addEventListener("submit", function (e) {
   e.preventDefault();
   clear();
+  init();
+  show();
 });
-
-// var address = document.querySelector("#address")
-
-// var results = document.querySelector("#results")
-
-// function showAddress() {
-//     results.innerHTML  = ' '
-//     if (addressArr.length > 0) {
-//         addressArr.foreach(element => {
-//             results.innerHTML +=  "<div class='results'>"
-//                                             + element.display_name
-//                                             + "<br> Lat: " + element.lat
-//                                             + " Lng: " + element.lon
-//                                             + "</div>"
-//         }
-//     }
-//     else {
-//         results.innerHTML  = "<p style='color: red;'>Not found</p>"
-//     }
-// }
-
-// function showAddress() {
-//     var url = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" + address.value
-//     fetch(url)
-//                   .then(response => response.json())
-//                   .then(data => addressArr = data)
-//                   .then(show => showAddress())
-//                   .catch(err => console.log(err))
-// }
