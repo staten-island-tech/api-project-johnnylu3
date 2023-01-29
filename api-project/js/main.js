@@ -26,34 +26,74 @@ async function getData(URL) {
 }
 getData(URL);
 
-async function findAddress() {
-  const url1 =
-    "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
-    DOMSelectors.input1.value;
-  let x = await fetch(url1);
-  let data = await x.json();
-  return data;
-}
+// async function findAddress() {
+//   const url1 =
+//     "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
+//     DOMSelectors.input1.value;
+//   let x = await fetch(url1);
+//   let data = await x.json();
+//   return data;
+// }
 
+// async function init() {
+//   let monkeys = await findAddress();
+//   console.log(monkeys);
+//   results.innerHTML = "";
+//   if (monkeys.length > 0) {
+//     monkeys.forEach((element) => {
+//       results.innerHTML +=
+//         "<div class='results'>" +
+//         element.display_name +
+//         "<br> Lat: " +
+//         element.lat +
+//         " Lng: " +
+//         element.lon +
+//         "</div>";
+//     });
+//   } else {
+//     results.innerHTML = "<p style='color: red;'>Not found</p>";
+//   }
+// }
+
+async function findAddress() {
+  try {
+    let city = DOMSelectors.input1.value;
+    let response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8819f20c9205070f8b81cb0884ce1ee5&units=imperial`
+    );
+    if (response.status < 200 || response.status > 299) {
+      console.log(response.status);
+      throw error(response);
+    } else {
+      let data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.log(error);
+    console.log("sad");
+    DOMSelectors.results.innerHTML = "<p style='color: red;'>Not found</p>";
+  }
+}
 async function init() {
   let monkeys = await findAddress();
   console.log(monkeys);
-  results.innerHTML = "";
-  if (monkeys.length > 0) {
-    monkeys.forEach((element) => {
+  let arr = Object.keys(monkeys);
+  if (arr.length > 0) {
+    arr.forEach(() => {
       results.innerHTML +=
         "<div class='results'>" +
-        element.display_name +
+        monkeys.name +
         "<br> Lat: " +
-        element.lat +
-        " Lng: " +
-        element.lon +
+        monkeys.main.temp +
         "</div>";
     });
   } else {
-    results.innerHTML = "<p style='color: red;'>Not found</p>";
+    DOMSelectors.results.innerHTML = "<p style='color: red;'>Not found</p>";
   }
 }
+// console.log(Object.entries(monkeys));
+// console.log(Object.keys(monkeys));
+// console.log(Object.values(monkeys));
 
 function clear() {
   DOMSelectors.input1.value = "";
@@ -63,3 +103,8 @@ DOMSelectors.submit.addEventListener("submit", function (e) {
   e.preventDefault();
   init();
 });
+
+/* https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid={API key}&units=imperial 
+https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid={API key}&units=metric
+https://api.openweathermap.org/data/2.5/weather?q=New%20York&appid=8819f20c9205070f8b81cb0884ce1ee5&units=metric
+https://api.openweathermap.org/data/2.5/weather?q=New%20York&appid=8819f20c9205070f8b81cb0884ce1ee5&units=imperial  */

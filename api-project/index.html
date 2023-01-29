@@ -15,16 +15,27 @@
             <label for="title">Food Name</label>
             <input type="text" id="title" class="text-box1" placeholder="Search" required
               onfocus="this.placeholder=''"
-              onblur="this.placeholder='Search'"
+              onblur="this.placeholder='Search for city'"
             />
           </div>
+        </form>
         </div>
         <div class="hero-form-input">
           <input type="submit" value="Submit" class="btn" />
         </div>
+
+        <div class="inputs">
+          <button class="metric">
+            °C
+          </button>
+          <p class="wasd">|</p>
+          <button class="imperial">
+            °F
+          </button>
+        </div>
         <div id="results"></div>
-      </form>
     </section>
     <script type="module" src="./js/main.js"></script>
   </body>
 </html>
+<div className="flex flex-row justify-center my-6">
