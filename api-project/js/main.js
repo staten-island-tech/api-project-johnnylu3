@@ -24,28 +24,23 @@ async function getData(URL) {
     document.getElementById("api-response").textContent = "sorry";
   }
 }
-
 getData(URL);
 
-const url1 =
-  "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
-  DOMSelectors.input1.value;
-let x = await fetch(url1);
-
-let data = await x.json();
-
 async function findAddress() {
+  const url1 =
+    "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
+    DOMSelectors.input1.value;
+  let x = await fetch(url1);
+  let data = await x.json();
   return data;
 }
 
 async function init() {
   let monkeys = await findAddress();
   console.log(monkeys);
-}
-function show() {
-  results.innerHTML = " ";
-  if (data.length > 0) {
-    data.forEach((element) => {
+  results.innerHTML = "";
+  if (monkeys.length > 0) {
+    monkeys.forEach((element) => {
       results.innerHTML +=
         "<div class='results'>" +
         element.display_name +
@@ -60,21 +55,11 @@ function show() {
   }
 }
 
-function find() {
-  fetch(url1)
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err));
-}
-
 function clear() {
   DOMSelectors.input1.value = "";
-  results.innerHTML = "";
 }
 
 DOMSelectors.submit.addEventListener("submit", function (e) {
   e.preventDefault();
-  clear();
   init();
-  show();
 });
