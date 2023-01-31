@@ -2,7 +2,7 @@ import "../styles/style.css";
 import "./dom";
 import { DOMSelectors } from "./dom";
 
-let x = imperial;
+
 let y = "metric";
 
 
