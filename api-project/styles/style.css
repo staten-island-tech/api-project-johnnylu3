@@ -28,7 +28,7 @@ margin-right: 0.25rem;
 .clutch {
     /* className="text-white text-lg font-medium" */
 }
-#form {
+.form-inputs {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -36,7 +36,7 @@ margin-right: 0.25rem;
     margin-bottom: 1.5rem; 
 }
 
-.form-inputs {
+#form {
     display: flex;
     flex-direction: row;
     width: 0.1875rem;

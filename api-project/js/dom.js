@@ -11,6 +11,8 @@ const DOMSelectors = {
   val: document.querySelector(".va13"),
   hunt: document.querySelector(".hunt3"),
   ge: document.querySelector(".ge12"),
+  get: document.querySelector(".metric"),
+  pop: document.querySelector(".imperial"),
 };
 
 export { DOMSelectors };

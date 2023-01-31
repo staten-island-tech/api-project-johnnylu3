@@ -1,8 +1,8 @@
 import "../styles/style.css";
 import "./dom";
 import { DOMSelectors } from "./dom";
-const iconUrlFromCode = (code) =>
-  `http://openweathermap.org/img/wn/${code}@2x.png`;
+const getIcon = (code) => `http://openweathermap.org/img/wn/${code}@2x.png`;
+
 const monkey = document.querySelector(".top-buttons");
 
 const cities = [
@@ -62,7 +62,7 @@ async function findAddress() {
       DOMSelectors.mom3.textContent = `${Math.round(data.wind.speed)}km/h`;
       DOMSelectors.val.textContent = data.weather[0].main;
       DOMSelectors.hunt.textContent = `${data.name}, ${data.sys.country}`;
-      DOMSelectors.ge.src = iconUrlFromCode(data.weather[0].icon);
+      DOMSelectors.ge.src = getIcon(data.weather[0].icon);
 
       return data;
     }
@@ -86,14 +86,16 @@ DOMSelectors.submit.addEventListener("submit", function (e) {
   init();
 });
 
+let units = DOMSelectors.get.addEventListener("click", function () {});
+DOMSelectors.pop.addEventListener("click", function () {});
 document.querySelectorAll(".clutch").forEach((we) => {
   cities.forEach((wasd) => {
     wasd.title;
-    async function wasd41() {
+    async function wasd41(units) {
       try {
         if (we.textContent.includes(wasd.title)) {
           let response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${wasd.title}&appid=8819f20c9205070f8b81cb0884ce1ee5&units=imperial`
+            `https://api.openweathermap.org/data/2.5/weather?q=${wasd.title}&appid=8819f20c9205070f8b81cb0884ce1ee5&units=${units}`
           );
           if (response.status < 200 || response.status > 299) {
             console.log(response.status);
@@ -112,7 +114,7 @@ document.querySelectorAll(".clutch").forEach((we) => {
             )}km/h`;
             DOMSelectors.val.textContent = data.weather[0].main;
             DOMSelectors.hunt.textContent = `${data.name}, ${data.sys.country}`;
-            DOMSelectors.ge.src = iconUrlFromCode(data.weather[0].icon);
+            DOMSelectors.ge.src = getIcon(data.weather[0].icon);
 
             return data;
           }
@@ -133,3 +135,5 @@ document.querySelectorAll(".clutch").forEach((we) => {
     });
   });
 });
+DOMSelectors.get.addEventListener("click", function () {});
+DOMSelectors.pop.addEventListener("click", function () {});
