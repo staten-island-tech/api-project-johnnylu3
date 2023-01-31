@@ -137,15 +137,20 @@ document.querySelectorAll(".clutch").forEach((we) => {
 });
 DOMSelectors.get.addEventListener("click", function () {});
 DOMSelectors.pop.addEventListener("click", function () {});
-if (classlist contains imperial){
-  make sure 
-}
-{}
-DOMSelectors.cold.addEventListener("click", function () {
+
+DOMSelectors.get.addEventListener("click", function () {
   if (DOMSelectors.display.classList.contains("imperial")) {
   } else {
     DOMSelectors.display.classList.remove("imperial", "metric");
     DOMSelectors.display.classList.add("imperial");
     function w(){};
+  }
+});
+DOMSelectors.pop.addEventListener("click", function () {
+  if (DOMSelectors.display.classList.contains("imperial")) {
+  } else {
+    DOMSelectors.display.classList.remove("imperial", "metric");
+    DOMSelectors.display.classList.add("imperial");
+    
   }
 });
