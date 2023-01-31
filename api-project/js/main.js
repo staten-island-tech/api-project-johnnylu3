@@ -1,6 +1,11 @@
 import "../styles/style.css";
 import "./dom";
 import { DOMSelectors } from "./dom";
+
+let x = imperial;
+let y = "metric";
+
+
 const getIcon = (code) => `http://openweathermap.org/img/wn/${code}@2x.png`;
 
 const monkey = document.querySelector(".top-buttons");
@@ -45,11 +50,11 @@ async function getData(URL) {
 }
 getData(URL);
 
-async function findAddress() {
+async function findAddress(units) {
   try {
     let city = DOMSelectors.input1.value;
     let response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8819f20c9205070f8b81cb0884ce1ee5&units=imperial`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8819f20c9205070f8b81cb0884ce1ee5&units=${units}`
     );
     if (response.status < 200 || response.status > 299) {
       console.log(response.status);
@@ -64,7 +69,7 @@ async function findAddress() {
       DOMSelectors.hunt.textContent = `${data.name}, ${data.sys.country}`;
       DOMSelectors.ge.src = getIcon(data.weather[0].icon);
 
-      return data;
+      return data, units;
     }
   } catch (error) {
     console.log(error);
@@ -72,8 +77,8 @@ async function findAddress() {
     // DOMSelectors.results.innerHTML = "<p style='color: red;'>Not found</p>";
   }
 }
-async function init() {
-  let monkeys = await findAddress();
+async function init(units) {
+  let monkeys = await findAddress(units);
   console.log(monkeys);
 }
 
@@ -83,10 +88,10 @@ function clear() {
 
 DOMSelectors.submit.addEventListener("submit", function (e) {
   e.preventDefault();
-  init();
+  init(y);
 });
 
-let units = DOMSelectors.get.addEventListener("click", function () {});
+ DOMSelectors.get.addEventListener("click", function () {});
 DOMSelectors.pop.addEventListener("click", function () {});
 document.querySelectorAll(".clutch").forEach((we) => {
   cities.forEach((wasd) => {
@@ -135,6 +140,8 @@ document.querySelectorAll(".clutch").forEach((we) => {
     });
   });
 });
+
+
 DOMSelectors.get.addEventListener("click", function () {});
 DOMSelectors.pop.addEventListener("click", function () {});
 
@@ -143,7 +150,7 @@ DOMSelectors.get.addEventListener("click", function () {
   } else {
     DOMSelectors.display.classList.remove("imperial", "metric");
     DOMSelectors.display.classList.add("imperial");
-    function w(){};
+    
   }
 });
 DOMSelectors.pop.addEventListener("click", function () {
