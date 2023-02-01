@@ -50,7 +50,7 @@ function getIcon(code){
   return `http://openweathermap.org/img/wn/${code}@2x.png`; 
 }
      
-    async function getWeather(response){
+  async function getWeather(response){
   if (response.status < 200 || response.status > 299) {
     DOMSelectors.results.innerHTML = "<p class='err'>Not found</p>"
     console.log(response.status);
