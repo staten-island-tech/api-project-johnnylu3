@@ -47,7 +47,7 @@ else {}
    .join("");
 
 function getIcon(code){
-  return `http://openweathermap.org/img/wn/${code}@2x.png`; 
+  return `https://openweathermap.org/img/wn/${code}@2x.png`; 
 }
      
   async function getWeather(response){
