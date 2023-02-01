@@ -3,141 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
-  <body>
+  <body class="imperial">
     <div id="app">
+      <header class="head">
+        <h1 class="header">Current Weather</h1>
+      </header>
 
       <div class="top-buttons" id="test1"></div>
-
-
         <div class="form-inputs">
           <form id="form">
+            <label class="label" for="box">City</label>
           <input
             type="text"
-            id="title"
+            id="box"
             class="text-box1"
             placeholder="Search for city"
             required
             onfocus="this.placeholder=''"
             onblur="this.placeholder='Search for city'"
           />
-          <input type="submit" value="Submit" class="btn" />
+          <input type="submit" value="Search" class="btn" />
           </form>
-
-        <div class="inputs">
-          <button class="metric">°C</button>
-          <p class="wasd">|</p>
-          <button class="imperial">°F</button>
-        </div>
+          <div class="inputs">
+            <button class="celcius">°C</button>
+            <p class="bar">|</p>
+            <button class="farenheit">°F</button>
+          </div>
 
     </div>
+<div class="results">
 
-      <div class="location">
-        <div class="v1">
-          <p class="text">Current Weather</p>
-        </div>
-        <div class="v2">
-          <p class="hunt3"></p>
-        </div>
       </div>
-
-      <div class="tempnd">
-
-        <div class="lol">
-          <p class="va13"></p>
-
-        </div>
-
-        <div class="class">
-
-          <img class="ge12" src="" alt="" />
-
-        <p class="lol23"></p>
-    
-        <div class="flex">
-          <div class="wasd31">
-            <UilTemperature size={18} className="mr-1" />
-            Real fell:
-            <span class="font" id="mom1"></span>
-          </div>
-          <div class="wasd31">
-            <UilTear size={18} className="mr-1" />
-            Humidity:
-            <span class="font" id="mom2"></span>
-          </div> 
-          <div class="wasd31">
-            <UilWind size={18} className="mr-1" />
-            Wind:
-            <span class="font" id="mom3"></span>
-          </div>
-        </div>
-
-
-        
-      <!-- <div className="flex flex-row items-center justify-center space-x-2 text-white text-sm py-3">
-        <UilSun />
-        <p className="font-light">
-          Rise:{" "}
-          <span className="font-medium ml-1">
-            {formatToLocalTime(sunrise, timezone, "hh:mm a")}
-          </span>
-        </p>
-        <p className="font-light">|</p>
-
-        <UilSunset />
-        <p className="font-light">
-          Set:{" "}
-          <span className="font-medium ml-1">
-            {formatToLocalTime(sunset, timezone, "hh:mm a")}
-          </span>
-        </p>
-        <p className="font-light">|</p>
-
-        <UilSun />
-        <p className="font-light">
-          High:{" "}
-          <span className="font-medium ml-1">{`${temp_max.toFixed()}°`}</span>
-        </p>
-        <p className="font-light">|</p>
-
-        <UilSun />
-        <p className="font-light">
-          Low:{" "}
-          <span className="font-medium ml-1">{`${temp_min.toFixed()}°`}</span>
-        </p> -->
-      <!-- </div> -->
-
-<!-- 
-        <div>
-          <div className="flex items-center justify-center py-6 text-xl text-cyan-300">
-            <p>{details}</p>
-          </div>
-    
-          <div className="flex flex-row items-center justify-between text-white py-3">
-            <img src={iconUrlFromCode(icon)} alt="" className="w-20" />
-            <p className="text-5xl">{`${temp.toFixed()}°`}</p>
-            <div className="flex flex-col space-y-2">
-              <div className="flex font-light text-sm items-center justify-center">
-                <UilTemperature size={18} className="mr-1" />
-                Real fell:
-                <span className="font-medium ml-1">{`${feels_like.toFixed()}°`}</span>
-              </div>
-              <div className="flex font-light text-sm items-center justify-center">
-                <UilTear size={18} className="mr-1" />
-                Humidity:
-                <span className="font-medium ml-1">{`${humidity.toFixed()}%`}</span>
-              </div>
-              <div className="flex font-light text-sm items-center justify-center">
-                <UilWind size={18} className="mr-1" />
-                Wind:
-                <span className="font-medium ml-1">{`${speed.toFixed()} km/h`}</span>
-              </div>
-            </div> -->
-
-
-  
 
     </div>
     <script type="module" src="./js/main.js"></script>
